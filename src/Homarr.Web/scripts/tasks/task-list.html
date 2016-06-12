@@ -1,0 +1,16 @@
+﻿
+<new-task></new-task>
+
+<div class="row">
+    <div class="col-md-3" *ngFor="#task of tasks | async" style="margin-top: 15px; margin-bottom: 0;">
+        <div class="card">
+            <div class="card-block">
+                <div class="card-title">{{task}}</div>
+            </div>
+            <div class="card-footer card-info">
+                <i class="fa fa-pencil card-icon-button"></i>
+                <i class="fa fa-trash card-icon-button" (click)="deleteTask(task)"></i>
+            </div>
+        </div>
+    </div>
+</div>
