@@ -7,12 +7,12 @@ import {Observer} from 'rxjs/Rx';
 @Injectable()
 export class TaskService {
 
-    observableTasks: Observable<string[]>;
+    observableTasks: any;
     private _tasksObserver: Observer<string[]>;
     private _tasks: string[];
 
     constructor() {
-        this.observableTasks = new Observable(observer => { this._tasksObserver = observer; this.ngOnInit(); }).share();
+        this.observableTasks = new Observable(observer => { this._tasksObserver = observer; this.ngOnInit(); });
         console.log(this._tasksObserver);
         console.log(this.observableTasks);
 
@@ -29,9 +29,9 @@ export class TaskService {
         this._tasksObserver.next(this._tasks);        
     }
    
-    public addTask(task: string): Observable<boolean> {
+    public addTask(task: string): boolean {
         if (!task || task.length === 0) {
-            return Observable.of(false);
+            return false;
         }
 
         this._tasks.push(task);
@@ -40,9 +40,9 @@ export class TaskService {
         return this.save();
     }
 
-    public deleteTask(task: string): Observable<boolean> {
+    public deleteTask(task: string): boolean {
         if (!task || task.length === 0) {
-            return Observable.of(false);
+            return false;
         }
 
         this._tasks = _(this._tasks).without(task);
@@ -55,10 +55,10 @@ export class TaskService {
         return this.observableTasks;
     }
 
-    private save(): Observable<boolean> {
+    private save(): boolean {
         localStorage.setItem("tasks", JSON.stringify(this._tasks))
         
-        return Observable.of(true);
+        return true;
     }
 
 }

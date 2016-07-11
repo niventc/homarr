@@ -25,7 +25,7 @@ System.register(['angular2/core', 'rxjs/Rx'], function(exports_1, context_1) {
             TaskService = (function () {
                 function TaskService() {
                     var _this = this;
-                    this.observableTasks = new Rx_1.Observable(function (observer) { _this._tasksObserver = observer; _this.ngOnInit(); }).share();
+                    this.observableTasks = new Rx_1.Observable(function (observer) { _this._tasksObserver = observer; _this.ngOnInit(); });
                     console.log(this._tasksObserver);
                     console.log(this.observableTasks);
                     //this.ngOnInit();
@@ -41,7 +41,7 @@ System.register(['angular2/core', 'rxjs/Rx'], function(exports_1, context_1) {
                 };
                 TaskService.prototype.addTask = function (task) {
                     if (!task || task.length === 0) {
-                        return Rx_1.Observable.of(false);
+                        return false;
                     }
                     this._tasks.push(task);
                     this._tasksObserver.next(this._tasks);
@@ -49,7 +49,7 @@ System.register(['angular2/core', 'rxjs/Rx'], function(exports_1, context_1) {
                 };
                 TaskService.prototype.deleteTask = function (task) {
                     if (!task || task.length === 0) {
-                        return Rx_1.Observable.of(false);
+                        return false;
                     }
                     this._tasks = _(this._tasks).without(task);
                     this._tasksObserver.next(this._tasks);
@@ -60,7 +60,7 @@ System.register(['angular2/core', 'rxjs/Rx'], function(exports_1, context_1) {
                 };
                 TaskService.prototype.save = function () {
                     localStorage.setItem("tasks", JSON.stringify(this._tasks));
-                    return Rx_1.Observable.of(true);
+                    return true;
                 };
                 TaskService = __decorate([
                     core_1.Injectable(), 
