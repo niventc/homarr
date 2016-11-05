@@ -3,26 +3,38 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { AngularFireModule } from 'angularfire2';
+import { firebaseConfig, authConfig } from '../environments/firebase-config';
+
 import { Logger } from './shared/logging/logger.service';
 import { ConsoleLogger } from './shared/logging/console-logger.service';
 
+import { ItemService } from './items/item.service';
+
 import { AppComponent } from './app.component';
+import { ItemListComponent } from './items/item-list.component';
 import { BarcodeScanner } from './shared/barcode-scanner.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    ItemListComponent,
     BarcodeScanner
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    AngularFireModule.initializeApp(firebaseConfig, authConfig)
   ],
   providers: [
     {
       provide: Logger,
       useClass: ConsoleLogger
+    },
+    {
+      provide: ItemService,
+      useClass: ItemService
     }
   ],
   bootstrap: [AppComponent]
