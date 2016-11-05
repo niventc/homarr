@@ -1,6 +1,7 @@
 import { Component, OnInit, NgZone, ViewChild, ElementRef } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import * as Quagga from 'quagga';
+import { Logger } from './logging/logger.service';
 
 interface DetectionResult {
   angle: number;
@@ -45,6 +46,7 @@ export class BarcodeScanner implements OnInit {
   barcodes: Array<string>;
 
   constructor(
+    private logger: Logger,
     private lifecycle: NgZone
   ) {
     this.barcodes = new Array<string>();
@@ -79,14 +81,14 @@ export class BarcodeScanner implements OnInit {
         readers : ["code_128_reader", "ean_reader"],
         multiple: false
       }
-    }, function(err) {
+    }, (err) => {
         if (err) {
-            console.log(err);
+            this.logger.error(err);
             return
         }
-        console.log("Initialization finished. Ready to start");
+        this.logger.info("Initialization finished. Ready to start");
         Quagga.start();
-        console.log("Quagga started successfully");
+        this.logger.info("Quagga started successfully");
     });
 
     Quagga.onDetected(this.handleDetection);
@@ -95,9 +97,9 @@ export class BarcodeScanner implements OnInit {
   private stopScanning(): void {
     try {
       Quagga.stop();
-      console.log("Quagga stopped successfully");    
+      this.logger.info("Quagga stopped successfully");    
     } catch (error) {
-      console.log("Unable to stop Quagga, maybe it hasn't started yet.");
+      this.logger.warn("Unable to stop Quagga, maybe it hasn't started yet.");
     }
   }
 
