@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
+import { defaultCredentials } from '../../environments/firebase-config';
+
 @Injectable()
 export class ItemService {
 
@@ -9,7 +11,7 @@ export class ItemService {
     constructor(
         private angularFire: AngularFire
     ) {
-        this.authPromise = angularFire.auth.login();
+        this.authPromise = angularFire.auth.login(defaultCredentials);
     }
 
     getItems() {

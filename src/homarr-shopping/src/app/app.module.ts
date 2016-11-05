@@ -13,12 +13,14 @@ import { ItemService } from './items/item.service';
 
 import { AppComponent } from './app.component';
 import { ItemListComponent } from './items/item-list.component';
+import { AddItemComponent } from './items/add-item.component';
 import { BarcodeScanner } from './shared/barcode-scanner.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ItemListComponent,
+    AddItemComponent,
     BarcodeScanner
   ],
   imports: [
