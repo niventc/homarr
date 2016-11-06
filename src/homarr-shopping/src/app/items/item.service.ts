@@ -21,4 +21,11 @@ export class ItemService {
                     });
     }
 
+    addItem(item): void {
+        this.authPromise
+            .then(() => {
+                this.angularFire.database.list('/items').push(item);
+            });
+    }
+
 }

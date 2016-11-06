@@ -8,8 +8,15 @@ import { ItemService } from './item.service';
     styleUrls: ['./add-item.component.scss']
 })
 export class AddItemComponent {
+
+    item: { [key: string]: string } = {};
+
     constructor(
         private itemService: ItemService
     ) {
+    }
+
+    addItem(): void {
+        this.itemService.addItem(this.item);
     }
 }
