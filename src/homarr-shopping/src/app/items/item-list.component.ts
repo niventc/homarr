@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseListObservable } from 'angularfire2';
+import { Observable } from 'rxjs';
 
 import { ItemService } from './item.service';
 
@@ -11,7 +12,7 @@ import { ItemService } from './item.service';
 export class ItemListComponent implements OnInit {
     title = 'app works!';
 
-    items: FirebaseListObservable<any[]>;
+    items: Observable<any[]>;
 
     constructor(
         private itemService: ItemService

@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, NgZone, ViewChild, ElementRef, Input, Output, EventEmitter, Inject, ViewEncapsulation } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import * as Quagga from 'quagga';
 import { Logger } from './logging/logger.service';
@@ -28,18 +28,28 @@ interface StartInfo {
   start: number;
 }
 
+export interface BarcodeDetectedEvent {
+  barcode: string;
+}
+
 @Component({
   selector: 'barcode-scanner',
   templateUrl: './barcode-scanner.component.html',
-  //styleUrls: ['./app.component.scss']
+  styleUrls: ['./barcode-scanner.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class BarcodeScanner implements OnInit {
+
+  static minimumLength: number = 6;
 
   @ViewChild("scanBtn") scanBtn: ElementRef;
   quaggaObservable: Subscription;
   isScanning: boolean;
 
   @ViewChild("barcode") barcodeInput: ElementRef;
+
+  @Input() initialValue: string;
+  @Output() onDetected: EventEmitter<BarcodeDetectedEvent> = new EventEmitter<BarcodeDetectedEvent>();
 
   title = 'app works!';
 
@@ -53,6 +63,7 @@ export class BarcodeScanner implements OnInit {
 
     this.handleDetection = this.handleDetection.bind(this);
     this.addItem = this.addItem.bind(this);
+    this.detectedBarcode = this.detectedBarcode.bind(this);
   }
 
   ngOnInit() {
@@ -68,6 +79,13 @@ export class BarcodeScanner implements OnInit {
           this.stopScanning();
         }
       });
+
+    Observable
+      .fromEvent(this.barcodeInput.nativeElement, 'keyup')
+      .pluck('target', 'value')
+      .filter((text: string) => text.length > BarcodeScanner.minimumLength)
+      .debounceTime(500)
+      .subscribe(this.detectedBarcode);
   }
 
   private startScanning(): void {
@@ -80,6 +98,11 @@ export class BarcodeScanner implements OnInit {
       decoder : {
         readers : ["code_128_reader", "ean_reader"],
         multiple: false
+      },
+      locator: {
+        debug: {
+          showCanvas: false
+        }
       }
     }, (err) => {
         if (err) {
@@ -103,11 +126,23 @@ export class BarcodeScanner implements OnInit {
     }
   }
 
+  private detectedBarcode(barcode: string): void {
+    this.logger.info("Found barcode: " + barcode);
+
+    this.onDetected.emit({
+        barcode: barcode
+    });
+  }
+
   handleDetection(data: DetectionResult) {
     this.lifecycle.run(() => {
-      this.barcodes.push(data.codeResult.code);
+      let barcode = data.codeResult.code;
 
-      this.barcodeInput.nativeElement.value = data.codeResult.code;
+      this.barcodes.push(barcode);
+
+      this.barcodeInput.nativeElement.value = barcode;
+      
+      this.detectedBarcode(barcode);
     });
   }
 

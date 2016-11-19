@@ -1,5 +1,8 @@
+import { Injectable } from '@angular/core';
+
 import { Logger } from './logger.service';
 
+@Injectable()
 export class ConsoleLogger implements Logger {
 
     public info(message: any, ...args: any[]): void {

@@ -1,0 +1,28 @@
+
+<barcode-scanner (onDetected)="onBarcodeDetected($event)"></barcode-scanner>
+
+<div id="found-items" class="row" *ngIf="isLookupComplete">
+    <div class="col-md-12">
+        <h4>Possible Matches</h4>
+    </div>
+
+    <div class="col-xl-4">
+        <div class="card text-xs-center" [ngClass]="{ 'card-outline-primary': doAddNewItem }" (click)="startAddNewItem()">
+            <div class="card-block">
+                <blockquote class="card-blockquote">
+                    Add New Item
+                </blockquote>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-xl-4" *ngFor="let item of items | async | slice:0:2">
+        <div class="card" >
+            {{item | json}}
+        </div>
+    </div>
+</div>
+
+<div id="add-item" *ngIf="doAddNewItem">
+    <add-item [barcode]="barcode"></add-item>
+</div>

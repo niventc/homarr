@@ -13,6 +13,7 @@ import { ItemService } from './items/item.service';
 
 import { AppComponent } from './app.component';
 import { ItemListComponent } from './items/item-list.component';
+import { ItemLookupComponent } from './items/item-lookup.component';
 import { AddItemComponent } from './items/add-item.component';
 import { BarcodeScanner } from './shared/barcode-scanner.component';
 
@@ -20,6 +21,7 @@ import { BarcodeScanner } from './shared/barcode-scanner.component';
   declarations: [
     AppComponent,
     ItemListComponent,
+    ItemLookupComponent,
     AddItemComponent,
     BarcodeScanner
   ],

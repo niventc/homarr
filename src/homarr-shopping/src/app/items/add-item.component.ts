@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+
+import { BarcodeDetectedEvent } from '../shared/barcode-scanner.component';
 
 import { ItemService } from './item.service';
 
@@ -7,13 +9,19 @@ import { ItemService } from './item.service';
     templateUrl: './add-item.component.html',
     styleUrls: ['./add-item.component.scss']
 })
-export class AddItemComponent {
+export class AddItemComponent implements OnInit {
+
+    @Input() barcode: string;
 
     item: { [key: string]: string } = {};
 
     constructor(
         private itemService: ItemService
     ) {
+    }
+
+    ngOnInit(): void {
+        this.item["barcode"] = this.barcode;
     }
 
     addItem(): void {
