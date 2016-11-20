@@ -4,6 +4,10 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
 import { defaultCredentials } from '../../environments/firebase-config';
 
+export interface FirebaseObject {
+    $key: string;
+}
+
 @Injectable()
 export class ItemService {
 
@@ -36,10 +40,10 @@ export class ItemService {
                    });
     }
 
-    addItem(item): void {
-        this.authPromise
+    addItem(item): Promise<string> {
+        return this.authPromise
             .then(() => {
-                this.angularFire.database.list('/items').push(item);
+                return this.angularFire.database.list('/items').push(item).key;
             });
     }
 

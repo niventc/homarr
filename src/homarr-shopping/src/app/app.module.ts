@@ -15,6 +15,7 @@ import { AppComponent } from './app.component';
 import { ItemListComponent } from './items/item-list.component';
 import { ItemLookupComponent } from './items/item-lookup.component';
 import { AddItemComponent } from './items/add-item.component';
+import { ItemActionsComponent } from './items/item-actions.component';
 import { BarcodeScanner } from './shared/barcode-scanner.component';
 
 @NgModule({
@@ -23,6 +24,7 @@ import { BarcodeScanner } from './shared/barcode-scanner.component';
     ItemListComponent,
     ItemLookupComponent,
     AddItemComponent,
+    ItemActionsComponent,
     BarcodeScanner
   ],
   imports: [

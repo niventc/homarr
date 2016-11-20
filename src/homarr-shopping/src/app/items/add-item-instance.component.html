@@ -1,0 +1,25 @@
+
+<div class="form-group row">
+    <label class="col-form-label col-md-3">Name</label>
+
+    <div class="col-md-9">
+        <input class="form-control" type="text" name="name" [(ngModel)]="item.name" />
+    </div>
+</div>
+
+<div class="form-group row">
+    <label class="col-form-label col-md-3">Picture</label>
+
+    <div class="col-md-9">
+        <input class="form-control" type="text" />
+    </div>
+</div>
+
+<div class="form-group-row">
+
+    {{item | json}}
+
+
+    <button class="btn btn-danger">Cancel</button>
+    <button class="btn btn-success" (click)="addItem()">Add Item</button>
+</div> 

@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
+import { ItemAddedEvent } from './add-item.component';
 import { BarcodeDetectedEvent } from '../shared/barcode-scanner.component';
 
-import { ItemService } from './item.service';
+import { ItemService, FirebaseObject } from './item.service';
 
 @Component({
     selector: 'item-lookup',
@@ -17,8 +18,11 @@ export class ItemLookupComponent {
 
     isLookupComplete: boolean;
     items: Observable<any[]>;
+    selectedItem: any;
 
     doAddNewItem: boolean;
+
+    doAddNewItemInstance: boolean;
 
     constructor(
         private itemService: ItemService
@@ -26,7 +30,7 @@ export class ItemLookupComponent {
         //this.name = new Subject<string>();
     }
 
-    onBarcodeDetected(event: BarcodeDetectedEvent): void {        
+    public onBarcodeDetected(event: BarcodeDetectedEvent): void {        
         this.barcode = event.barcode;
 
         Observable.fromPromise(this.itemService.findItemsByBarcode(event.barcode))
@@ -37,10 +41,27 @@ export class ItemLookupComponent {
                   });
     }
 
-    public startAddNewItem(): void {
-        console.log("Adding new item");
+    public selectItem(item: any): void {
+        this.selectedItem = item;
 
+        this.doAddNewItem = false;
+        this.doAddNewItemInstance = true;
+    }
+
+    public isItemSelected(item: any): boolean {
+        return this.selectedItem && this.selectedItem.$key === item.$key;
+    }
+
+    public onItemAdded(event: ItemAddedEvent): void {
+        this.doAddNewItem = false;
+
+        this.doAddNewItemInstance = true;
+    }
+
+    public startAddNewItem(): void {
         this.doAddNewItem = true;
+
+        this.selectedItem = undefined;
     }
     
 

@@ -16,13 +16,21 @@
         </div>
     </div>
     
-    <div class="col-xl-4" *ngFor="let item of items | async | slice:0:2">
-        <div class="card" >
-            {{item | json}}
+    <div class="col-xl-4" *ngFor="let item of items | async | slice:0:2" (click)="selectItem(item)">
+        <div class="card text-xs-center" [ngClass]="{ 'card-outline-primary': isItemSelected(item) }">
+            <div class="card-block">
+                <blockquote class="card-blockquote">
+                    {{item | json}}
+                </blockquote>
+            </div>
         </div>
     </div>
 </div>
 
 <div id="add-item" *ngIf="doAddNewItem">
-    <add-item [barcode]="barcode"></add-item>
+    <add-item [barcode]="barcode" (onItemAdded)="onItemAdded($event)"></add-item>
+</div>
+
+<div id="add-item-instance" *ngIf="doAddNewItemInstance">
+    <item-actions item="selectedItem"></item-actions>
 </div>

@@ -1,8 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 
 import { BarcodeDetectedEvent } from '../shared/barcode-scanner.component';
 
 import { ItemService } from './item.service';
+
+export interface ItemAddedEvent {
+    key: string;
+}
 
 @Component({
     selector: 'add-item',
@@ -12,6 +16,7 @@ import { ItemService } from './item.service';
 export class AddItemComponent implements OnInit {
 
     @Input() barcode: string;
+    @Output() onItemAdded: EventEmitter<ItemAddedEvent> = new EventEmitter<ItemAddedEvent>();
 
     item: { [key: string]: string } = {};
 
@@ -25,6 +30,9 @@ export class AddItemComponent implements OnInit {
     }
 
     addItem(): void {
-        this.itemService.addItem(this.item);
+        this.itemService.addItem(this.item)
+                         .then(key => {
+                             this.onItemAdded.emit({ key: key });
+                         });
     }
 }
