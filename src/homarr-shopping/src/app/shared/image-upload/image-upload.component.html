@@ -7,11 +7,9 @@
 
     </div>
 
-    <div class="col-md-12">
+    <div class="col-md-12" *ngIf="isImageUploadComplete">
 
-        Preview
-
-        TBC
+        <img [src]="imageUrl" />
 
     </div>
 

@@ -16,14 +16,9 @@ export class ItemService {
     private imagesFolder;
 
     constructor(
-        private angularFire: AngularFire,
-        //private firebaseApp: firebase.app.App
+        private angularFire: AngularFire
     ) {
         this.authPromise = angularFire.auth.login(defaultCredentials);
-
-        // this.authPromise().then(() => {            
-        //     this.imagesFolder = this.firebaseApp.storage().ref().child('images');
-        // });
     }
 
     getItems(): Promise<Observable<any[]>> {
