@@ -16,6 +16,7 @@ import { ItemListComponent } from './items/item-list.component';
 import { ItemLookupComponent } from './items/item-lookup.component';
 import { AddItemComponent } from './items/add-item.component';
 import { ItemActionsComponent } from './items/item-actions.component';
+import { ItemCardComponent } from './items/item-card.component';
 
 import { BarcodeScanner } from './shared/barcode-scanner.component';
 import { ImageUploadComponent } from './shared/image-upload/image-upload.component';
@@ -27,6 +28,7 @@ import { ImageUploadComponent } from './shared/image-upload/image-upload.compone
     ItemLookupComponent,
     AddItemComponent,
     ItemActionsComponent,
+    ItemCardComponent,
     
     BarcodeScanner,
     ImageUploadComponent

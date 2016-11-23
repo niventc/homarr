@@ -1,6 +1,7 @@
 import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 
 import { BarcodeDetectedEvent } from '../shared/barcode-scanner.component';
+import { ImageUploadedEvent } from '../shared/image-upload/image-upload.component';
 
 import { ItemService } from './item.service';
 
@@ -27,6 +28,10 @@ export class AddItemComponent implements OnInit {
 
     ngOnInit(): void {
         this.item["barcode"] = this.barcode;
+    }
+
+    onImageUploaded(event: ImageUploadedEvent): void {
+        this.item["picture"] = event.key;
     }
 
     addItem(): void {
