@@ -1,11 +1,10 @@
 <div class="form-group row">
-    <label class="col-form-label col-md-3">Barcode</label>
-
-    <div class="col-md-9">
-        <span class="input-group">
-            <input class="form-control" type="text" #barcode (keyup)="addItem(barcode.value)">
+    <div class="col-md-12">
+        <span class="homarr-input-group input-group">
+            <input class="form-control homarr-input" required type="text" #barcode>
+            <label>Barcode</label>
             <span class="input-group-btn">
-                <button #scanBtn class="btn btn-default"><i class="fa fa-barcode"></i> Scan</button>
+                <button #scanBtn class="btn btn-default homarr-button"><i class="fa fa-barcode"></i> Scan</button>
             </span>
         </span>
     </div>

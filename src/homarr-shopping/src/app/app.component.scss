@@ -32,8 +32,6 @@
     z-index: 10000; 
     height: 100%;
 
-    animation: all 1000ms cubic-bezier();
-
     #homarr-sheet-right-overlay {
         background-color: rgba(0, 0, 0, 0.1);
         height: 100%;
@@ -66,7 +64,7 @@
         }
 
         .homarr-sheet-body {
-            padding: 24px;
+            padding: 8px 24px;
         }
     }
 
