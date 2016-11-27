@@ -1,42 +1,45 @@
 <div class="container-fluid">
   <nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
-    <a class="navbar-brand" href="#">
-      <i class="fa fa-shopping-cart"></i> Shopping
+    <a class="navbar-brand homarr-logo" href="#">
+      [h]
     </a>
+    <ul class="nav navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Inventory</a>
+      </li>      
+    </ul>
   </nav>
 
-  <section id="main" style="padding-top: 54px">
+  <section id="main" style="padding-top: 69px">
     <div class="row">
-      <div class="col-md-6">
-        <!--<div class="row homarr-big-nav">
-          <div class="col-md-4 homarr-big-nav-item" style="background-color: #F44336;" title="Lookup">
-            <div>
-              <i class="fa fa-search fa-5x"></i>
-            </div>
-          </div>
-          <div class="col-md-4 homarr-big-nav-item" style="background-color: #2196F3;" title="Groceries">
-            <div>
-              <i class="fa fa-shopping-cart fa-5x"></i>
-            </div>
-          </div>
-          <div class="col-md-4 homarr-big-nav-item" style="background-color: #8BC34A;" title="Other">
-            <div>
-              <i class="fa fa-book fa-5x"></i>
-            </div>
-          </div>
-        </div>-->
-
-
-
-        <h4>Lookup Item</h4>
-        <item-lookup></item-lookup>
-      </div>
-
-      <div class="col-md-6">
+      <div class="col-md-12">
         <h4>Items</h4>
         <item-list></item-list>
       </div>
     </div>
+
+    <div class="homarr-fab" (click)="showAdd = !showAdd">
+      <i class="material-icons">add</i>
+    </div>
+    
+    <div id="homarr-sheet-right" class="row" *ngIf="showAdd" [@fadeInOut]="showAdd">
+      <div id="homarr-sheet-right-overlay" class="hidden-sm-down col-md-7">        
+      </div>
+
+      <div id="homarr-sheet-right-content" class="col-sm-12 col-md-5">
+        <div class="homarr-sheet-header">
+          <h4 class="homarr-sheet-title">
+            <i class="homarr-sheet-return-button material-icons" (click)="showAdd = !showAdd">keyboard_backspace</i>
+            Add Item
+          </h4>
+        </div>
+        <div class="homarr-sheet-body">
+          <item-lookup></item-lookup>
+        </div>
+      </div>
+    </div>
+
+
   </section>
 
 </div>

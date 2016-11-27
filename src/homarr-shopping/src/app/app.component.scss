@@ -1,3 +1,83 @@
+.homarr-logo {
+    font-size: 1.5em; 
+    padding-top: 0; 
+    padding-bottom: 0;
+}
+
+.homarr-fab {
+
+    position: absolute;
+    right: 24px;
+    bottom: 24px;
+    width: 56px;
+    height: 56px;
+    padding: 16px 0;
+    cursor: pointer;
+
+    text-align: center;
+    background-color: red;
+    color: white;
+    border-radius: 28px;
+    box-shadow: 3px 3px 3px #ccc;
+
+    i {
+        font-size: 24px;
+    }
+}
+
+#homarr-sheet-right {
+    position: absolute; 
+    right: 0; 
+    top: 0; 
+    z-index: 10000; 
+    height: 100%;
+
+    animation: all 1000ms cubic-bezier();
+
+    #homarr-sheet-right-overlay {
+        background-color: rgba(0, 0, 0, 0.3);
+        height: 100%;
+    }
+
+    #homarr-sheet-right-content {
+        height: 100%;
+        background-color: white;
+        padding-left: 0;
+
+        .homarr-sheet-header {
+            background-color: red;
+            color: white;
+            padding: 24px;
+
+            .homarr-sheet-return-button {
+                padding-right: 24px;
+                cursor: pointer;
+            }
+        }
+
+        .homarr-sheet-body {
+            padding: 24px;
+        }
+    }
+
+}
+
+.navbar.navbar-dark {
+
+    box-shadow: 0 3px 3px #ccc;
+
+    .nav-item {
+        padding-left: 12px;
+        padding-right: 12px;
+        margin-top: 3px;
+        margin-bottom: -8px;
+
+        &.active {
+            border-bottom: 3px solid red;
+        }
+    }
+}
+
 .homarr-big-nav {
 
     .homarr-big-nav-item {

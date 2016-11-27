@@ -79,9 +79,9 @@ export class BarcodeScanner implements OnInit {
 
     Observable
       .fromEvent(this.barcodeInput.nativeElement, 'keyup')
+      .debounceTime(500)
       .pluck('target', 'value')
       .filter((text: string) => text.length > BarcodeScanner.minimumLength)
-      .debounceTime(500)
       .subscribe(this.detectedBarcode);
 
     this.detectionSubject
