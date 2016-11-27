@@ -7,11 +7,11 @@ import { Component, trigger, animate, transition, style } from '@angular/core';
   animations: [
     trigger('fadeInOut', [
       transition(':enter', [
-        style({opacity: 0}),
-        animate(500, style({opacity: 1}))
+        style({transform: 'scale(0)', 'transform-origin': 'right bottom'}),
+        animate(200, style({transform: 'scale(1)', 'transform-origin': 'right bottom'}))
       ]),
       transition(':leave', [
-        animate(500, style({opacity: 0}))
+        animate(200, style({transform: 'scale(0)', 'transform-origin': 'right bottom'}))
       ])
     ])
   ]
