@@ -1,9 +1,19 @@
 
 <div class="form-group row">
-    <label class="col-form-label col-md-3">Name</label>
+    <div class="col-md-12">
+        <span class="homarr-input-group input-group">
+            <input class="form-control homarr-input" required type="text" name="type" [(ngModel)]="item.type" />
+            <label>Type</label>
+        </span>
+    </div>
+</div>
 
-    <div class="col-md-9">
-        <input class="form-control" type="text" name="name" [(ngModel)]="item.name" />
+<div class="form-group row">
+    <div class="col-md-12">
+        <span class="homarr-input-group input-group">
+            <input class="form-control homarr-input" required type="text" name="name" [(ngModel)]="item.name" />
+            <label>Name</label>
+        </span>
     </div>
 </div>
 

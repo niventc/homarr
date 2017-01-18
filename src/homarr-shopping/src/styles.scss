@@ -1,1 +1,62 @@
 /* You can add global styles to this file, and also import other style files */
+
+.homarr-input-group {
+    position: relative;
+
+    label {
+        position: absolute;
+        top: 36px;
+        left: 0;
+        z-index: 1000;
+        font-size: 16px;
+    }
+
+    .homarr-input {
+        border: none;
+        border-bottom: 1px solid #ccc;
+        border-radius: 0;
+
+        padding-top: 36px;
+        padding-left: 0;
+        margin-bottom: 8px;
+
+        &:valid {
+            + label {
+                top: 0;
+                font-size: 11px;
+                margin-bottom: 8px;
+                padding-top: 16px;
+            }
+        }
+
+        &:focus {
+            border-width: 2px;
+
+            + label {
+                top: 0;
+                font-size: 11px;
+                margin-bottom: 8px;
+                padding-top: 16px;
+            }
+        }
+
+    }
+
+} 
+
+
+.homarr-button {
+    border-radius: 2px;
+    border-bottom-left-radius: 2px !important;
+    border-top-left-radius: 2px !important;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.input-group-btn {
+    padding-left: 24px;
+}
+
+.form-group {
+    margin-bottom: 0 !important;
+}

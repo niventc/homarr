@@ -43,6 +43,11 @@
         padding-left: 0;
         box-shadow: 0 0 2px 2px #ccc;
 
+        // TODO add media tag
+        &.col-sm-12 {
+            margin-left: 10px;
+        }
+
         .homarr-sheet-header {
             background-color: red;
             color: white;
