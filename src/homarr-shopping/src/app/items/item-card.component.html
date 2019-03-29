@@ -1,8 +1,7 @@
-
-<!--<div class="card">    -->
-    <img class="card-img-top" [src]="itemPictureUrl | async" />
-    <div class="card-block">
-        <h4 class="card-title">{{item.name}}</h4>
-        <p class="card-text"><small class="text-muted">{{item.barcode}}</small></p>
-    </div>
-<!--</div>-->
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>{{item.name}}</mat-card-title>
+        <mat-card-subtitle>{{item.barcode}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image [src]="itemPictureUrl | async" />
+</mat-card>

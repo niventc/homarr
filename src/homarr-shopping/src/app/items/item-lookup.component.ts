@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { ItemAddedEvent } from './add-item.component';
 import { BarcodeDetectedEvent } from '../shared/barcode-scanner.component';
 
-import { ItemService, FirebaseObject } from './item.service';
+import { ItemService } from './item.service';
 
 @Component({
     selector: 'item-lookup',
@@ -33,12 +33,7 @@ export class ItemLookupComponent {
     public onBarcodeDetected(event: BarcodeDetectedEvent): void {        
         this.barcode = event.barcode;
 
-        Observable.fromPromise(this.itemService.findItemsByBarcode(event.barcode))
-                  .subscribe(data => {
-                      this.items = data;
-
-                      this.isLookupComplete = true;
-                  });
+        this.items = this.itemService.findItemsByBarcode(event.barcode);
     }
 
     public selectItem(item: any): void {

@@ -1,5 +1,6 @@
 import { Component, ViewChild, OnInit, ElementRef, EventEmitter, Output } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable, fromEvent } from 'rxjs';
+import { map, pluck } from 'rxjs/operators';
 
 import { Logger } from '../logging/logger.service';
 import { ImageService } from './image.service';
@@ -35,10 +36,12 @@ export class ImageUploadComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        Observable.fromEvent(this.file.nativeElement, 'change')
-                  .pluck('target', 'files')
-                  .map((fileList: FileList) => fileList[0])
-                  .subscribe(this.handleImageUpload);
+        fromEvent(this.file.nativeElement, 'change')
+            .pipe(
+                pluck('target', 'files'),
+                map((fileList: FileList) => fileList[0])
+            )
+            .subscribe(this.handleImageUpload);
     }
 
     private handleImageUpload(file: File): void {

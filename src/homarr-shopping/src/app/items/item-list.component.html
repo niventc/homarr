@@ -1,5 +1,4 @@
-<div class="card-deck-wrapper">
-    <div class="card-deck">
-        <item-card class="card" [item]="item" *ngFor="let item of items | async"></item-card>
-    </div>
+
+<div style="display: flex">
+    <item-card [item]="item" *ngFor="let item of items | async" style="margin: 12px"></item-card>
 </div>

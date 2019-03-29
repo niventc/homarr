@@ -1,6 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { FirebaseApp } from 'angularfire2';
+import { FirebaseApp } from '@angular/fire';
+import * as firebase from 'firebase';
 
 import { Logger } from '../logging/logger.service';
 import { ImageService } from './image.service';
@@ -12,7 +13,7 @@ export class FirebaseImageService implements ImageService {
 
     constructor(
         private logger: Logger,
-        @Inject(FirebaseApp) private firebaseApp: firebase.app.App
+        @Inject(FirebaseApp) private firebaseApp: FirebaseApp
     ) {
 
     }

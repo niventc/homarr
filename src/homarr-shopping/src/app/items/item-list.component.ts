@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseListObservable } from 'angularfire2';
 import { Observable } from 'rxjs';
 
 import { ItemService } from './item.service';
@@ -29,9 +28,7 @@ export class ItemListComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.itemService.getItems().then(data => {
-            this.items = data;
-        });
+        this.items = this.itemService.getItems();
     }
 
     public getImageUrl(item: any): string {

@@ -1,4 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+@import "dark-theme.scss";
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    background-color: #efefef;
+    height: 100%;
+}
+
+.mat-drawer-content {
+    overflow: hidden;
+}
 
 .homarr-input-group {
     position: relative;
